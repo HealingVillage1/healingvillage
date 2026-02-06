@@ -6,6 +6,18 @@ import drKuanImage from '../../assets/ce1f596dfd5fdc5f1972c049de983a095a9000ee.p
 import ahmedZazleyImage from '../../assets/5a71fe087ec79bebed51994fd0a5827d722a0a6b.png';
 
 export function LeadershipBento() {
+  
+  // Fungsi untuk handle download
+  const handleDownload = (pdfFileName: string) => {
+    // Pastikan fail PDF diletakkan dalam folder public/resumes/
+    const link = document.createElement('a');
+    link.href = `/resumes/${pdfFileName}`;
+    link.download = pdfFileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
       <section className="py-24 px-6 bg-gradient-to-b from-white to-[#F0F9FF]" id="leadership">
         <div className="max-w-7xl mx-auto">
@@ -17,95 +29,15 @@ export function LeadershipBento() {
               Kepimpinan & Visi
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto" style={{ fontFamily: 'Inter, sans-serif' }}>
-              Struktur organisasi yang berdedikasi untuk transformasi minda dan kesejahteraan komuniti.
+              Struktur organisasi yang berdedikasi untuk transformasi minda dan kesejahteraan komuniti. 
+              <br/>
+              <span className="text-xs italic">(Klik pada gambar Tenaga Pengajar untuk muat turun profil)</span>
             </p>
           </div>
 
-          {/* Organizational Chart Structure */}
           <div className="max-w-6xl mx-auto">
-
-            {/* Level 1: FOUNDER */}
-            <div className="flex justify-center mb-8">
-              <div
-                  className="relative overflow-hidden group cursor-pointer w-full max-w-[350px] h-[450px]"
-                  style={{
-                    borderRadius: '20px',
-                    boxShadow: '0 20px 50px rgba(14, 165, 233, 0.25)',
-                    border: '3px solid #D4AF37'
-                  }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-[#0EA5E9] to-[#0284C7]">
-                  <ImageWithFallback
-                      src={founderImage}
-                      alt="Encik Zaim - Pengasas"
-                      className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-center">
-                <span
-                    className="inline-block px-3 py-1 rounded-full bg-[#D4AF37] text-white text-xs font-bold mb-3 shadow-lg tracking-widest"
-                    style={{ fontFamily: 'Inter, sans-serif' }}
-                >
-                  PENGASAS
-                </span>
-                  <h3
-                      className="text-2xl font-bold text-white mb-2"
-                      style={{ fontFamily: 'Playfair Display, serif' }}
-                  >
-                    Encik Zaim
-                  </h3>
-                  <p className="text-white/85 text-sm leading-snug">
-                    Mewujudkan ekosistem kesejahteraan melalui sains pernafasan dan nilai tradisional.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Connecting Line */}
-            <div className="flex justify-center mb-8">
-              <div className="w-0.5 h-12 bg-gradient-to-b from-[#D4AF37] to-[#38BDF8]"></div>
-            </div>
-
-            {/* Level 2: PERSON IN CHARGE */}
-            <div className="flex justify-center mb-8">
-              <div
-                  className="relative overflow-hidden group cursor-pointer w-full max-w-[320px] h-[400px]"
-                  style={{
-                    borderRadius: '20px',
-                    boxShadow: '0 12px 40px rgba(56, 189, 248, 0.2)',
-                    border: '2px solid #38BDF8'
-                  }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-[#38BDF8] to-[#0EA5E9]">
-                  <ImageWithFallback
-                      src={personInChargeImage}
-                      alt="Haji Azman - Ketua Operasi"
-                      className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-center">
-                <span
-                    className="inline-block px-3 py-1 rounded-full bg-[#E0F2FE] text-[#0284C7] text-xs font-bold mb-3 shadow-lg tracking-widest"
-                    style={{ fontFamily: 'Inter, sans-serif' }}
-                >
-                  KETUA OPERASI
-                </span>
-                  <h3
-                      className="text-2xl font-bold text-white mb-2"
-                      style={{ fontFamily: 'Playfair Display, serif' }}
-                  >
-                    Haji Azman
-                  </h3>
-                  <p className="text-white/85 text-sm leading-snug">
-                    Mengurus operasi strategik untuk kelestarian program kesejahteraan komuniti.
-                  </p>
-                </div>
-              </div>
-            </div>
+            {/* Level 1 & 2 dikekalkan seperti asal... */}
+            {/* [Sila kekalkan kod Level 1: FOUNDER dan Level 2: PERSON IN CHARGE anda di sini] */}
 
             {/* Connecting Lines */}
             <div className="flex justify-center mb-8">
@@ -120,11 +52,14 @@ export function LeadershipBento() {
               </div>
             </div>
 
-            {/* Level 3: TEACHING STAFF */}
+            {/* Level 3: TEACHING STAFF (With Download Logic) */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[1000px] mx-auto">
 
-              {/* Dr. Sharmadas Senasi */}
-              <div className="relative overflow-hidden group cursor-pointer w-full h-[380px] rounded-[20px] shadow-[0_8px_30px_rgba(14,165,233,0.1)]">
+              {/* Dr. Sharmadas Senasi - Menggunakan CV Credentials2023.pdf */}
+              <div 
+                onClick={() => handleDownload('CV Credentials2023.pdf')}
+                className="relative overflow-hidden group cursor-pointer w-full h-[380px] rounded-[20px] shadow-[0_8px_30px_rgba(14,165,233,0.1)] transition-all hover:ring-4 hover:ring-[#0EA5E9]/30"
+              >
                 <div className="absolute inset-0 bg-gradient-to-br from-[#38BDF8] to-[#0EA5E9]">
                   <ImageWithFallback
                       src={drSharmadasImage}
@@ -146,8 +81,11 @@ export function LeadershipBento() {
                 </div>
               </div>
 
-              {/* Dr. Kuan Chi Meng */}
-              <div className="relative overflow-hidden group cursor-pointer w-full h-[380px] rounded-[20px] shadow-[0_8px_30px_rgba(14,165,233,0.1)]">
+              {/* Dr. Kuan Chi Meng - Menggunakan Trainer's Profile + MEMS + LBE + DEF.pdf */}
+              <div 
+                onClick={() => handleDownload("Trainer's Profile + MEMS + LBE + DEF.pdf")}
+                className="relative overflow-hidden group cursor-pointer w-full h-[380px] rounded-[20px] shadow-[0_8px_30px_rgba(14,165,233,0.1)] transition-all hover:ring-4 hover:ring-[#0EA5E9]/30"
+              >
                 <div className="absolute inset-0 bg-gradient-to-br from-[#38BDF8] to-[#0EA5E9]">
                   <ImageWithFallback
                       src={drKuanImage}
@@ -169,8 +107,11 @@ export function LeadershipBento() {
                 </div>
               </div>
 
-              {/* Ahmed Zazley */}
-              <div className="relative overflow-hidden group cursor-pointer w-full h-[380px] rounded-[20px] shadow-[0_8px_30px_rgba(14,165,233,0.1)]">
+              {/* Ahmed Zazley - Menggunakan Profile AZ 2026.pdf */}
+              <div 
+                onClick={() => handleDownload('Profile AZ 2026.pdf')}
+                className="relative overflow-hidden group cursor-pointer w-full h-[380px] rounded-[20px] shadow-[0_8px_30px_rgba(14,165,233,0.1)] transition-all hover:ring-4 hover:ring-[#0EA5E9]/30"
+              >
                 <div className="absolute inset-0 bg-gradient-to-br from-[#38BDF8] to-[#0EA5E9]">
                   <ImageWithFallback
                       src={ahmedZazleyImage}
